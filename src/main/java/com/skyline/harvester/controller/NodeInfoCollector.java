@@ -51,7 +51,7 @@ public final class NodeInfoCollector {
         try {
             long totalSwap = collectValue(GET_TOTAL_SWAP_SPACE_SIZE_MTHOD_NAME);
             long freeSwap = collectValue(GET_FREE_SWAP_SPACE_SIZE_METHOD_NAME);
-            return freeSwap / totalSwap;
+            return (double)freeSwap / (double)totalSwap;
         } catch (ClassCastException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
             return 0.0;
@@ -62,7 +62,7 @@ public final class NodeInfoCollector {
         try {
             long totalMemory = collectValue(GET_TOTAL_PHYSICAL_MEMORY_SIZE_METHOD_NAME);
             long freeMemory = collectValue(GET_FREE_PHYSICAL_MEMORY_SIZE_METHOD_NAME);
-            return freeMemory / totalMemory;
+            return (double)freeMemory / (double)totalMemory;
         } catch (ClassCastException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
             return 0.0;
@@ -70,9 +70,9 @@ public final class NodeInfoCollector {
     }
 
     private <T>T collectValue(final String methodName) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        final Method method = OPERATING_SYSTEM_MX_BEAN.getClass().getDeclaredMethod(GET_TOTAL_PHYSICAL_MEMORY_SIZE_METHOD_NAME);
+        final Method method = OPERATING_SYSTEM_MX_BEAN.getClass().getDeclaredMethod(methodName);
         method.setAccessible(true);
-        return (T)method.invoke(methodName);
+        return (T)method.invoke(OPERATING_SYSTEM_MX_BEAN);
     }
 
     private static class InstanceHandler {
