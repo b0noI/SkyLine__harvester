@@ -1,11 +1,22 @@
 package com.skyline.harvester.model;
 
-/**
- * Created with IntelliJ IDEA.
- * User: b0noi
- * Date: 11/9/13
- * Time: 11:50 PM
- * To change this template use File | Settings | File Templates.
- */
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class NodeInfoHelperTest {
+
+    @Test
+    public void testSerDeser() throws Exception {
+        NodeInfo nodeInfo = new NodeInfo.Builder()
+                .cpuUsage(1.1)
+                .freeRam(2.2)
+                .freeSwap(3.3)
+                .build();
+
+        byte[] data = NodeInfoHelper.serializ(nodeInfo);
+        NodeInfo actualResult = NodeInfoHelper.deserializ(data);
+
+        assertEquals(nodeInfo, actualResult);
+    }
 }

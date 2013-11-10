@@ -13,7 +13,6 @@ public class NodeInfoCollectorTest {
 
         NodeInfo nodeInfo = testClass.collect();
 
-//        assertTrue(nodeInfo.getCpuUsage() > 0);
         assertTrue(nodeInfo.getFreeRam() > 0);
         assertTrue(nodeInfo.getFreeSwap() > 0);
     }

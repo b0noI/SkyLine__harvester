@@ -15,4 +15,15 @@ public final class NodeInfoHelper {
         return null;
     }
 
+
+    public static NodeInfo deserializ(byte[] data) {
+        try(ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            ObjectInput in = new ObjectInputStream(bais)) {
+            return (NodeInfo)in.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

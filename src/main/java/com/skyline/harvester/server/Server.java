@@ -26,7 +26,7 @@ public class Server {
 
     static {
         try {
-            PROPERTIES.load(new FileInputStream(FILE_NAME));
+            PROPERTIES.load(Server.class.getResourceAsStream(FILE_NAME));
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);

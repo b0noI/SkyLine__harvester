@@ -1,6 +1,8 @@
 package com.skyline.harvester.model;
 
-public final class NodeInfo {
+import java.io.Serializable;
+
+public final class NodeInfo implements Serializable{
 
     public double getCpuUsage() {
         return cpuUsage;
@@ -12,6 +14,33 @@ public final class NodeInfo {
 
     public double getFreeSwap() {
         return freeSwap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        NodeInfo nodeInfo = (NodeInfo) o;
+
+        if (Double.compare(nodeInfo.cpuUsage, cpuUsage) != 0) return false;
+        if (Double.compare(nodeInfo.freeRam, freeRam) != 0) return false;
+        if (Double.compare(nodeInfo.freeSwap, freeSwap) != 0) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(cpuUsage);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(freeRam);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(freeSwap);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     public static class Builder {
