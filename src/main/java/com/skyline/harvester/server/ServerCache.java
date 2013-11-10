@@ -1,7 +1,8 @@
 package com.skyline.harvester.server;
 
 import com.skyline.harvester.controller.NodeInfoCollector;
-import com.skyline.harvester.model.NodeInfo;
+import com.skyline.harvester.model.HarvesterInfo;
+import com.skyline.harvester.model.HarvesterInfo;
 
 final class ServerCache {
 
@@ -9,11 +10,11 @@ final class ServerCache {
         return InstanceHendler.getInstance();
     }
 
-    public NodeInfo getNodeInfo() {
+    public HarvesterInfo getHarvesterInfo() {
         long time = System.currentTimeMillis();
         if (time - lastUpdate > CACHE_TIME)
             updateCache();
-        return nodeInfo;
+        return harvesterInfo;
     }
 
     // private section
@@ -24,14 +25,14 @@ final class ServerCache {
 
     private long lastUpdate = 0;
 
-    private NodeInfo nodeInfo;
+    private HarvesterInfo harvesterInfo;
 
     private ServerCache() {}
 
     private synchronized void updateCache() {
         long time = System.currentTimeMillis();
         if (time - lastUpdate > CACHE_TIME) {
-            nodeInfo = NODE_INFO_COLLECTOR.collect();
+            harvesterInfo = NODE_INFO_COLLECTOR.collect();
         }
     }
 

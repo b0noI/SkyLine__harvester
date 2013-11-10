@@ -1,6 +1,7 @@
 package com.skyline.harvester.controller;
 
-import com.skyline.harvester.model.NodeInfo;
+import com.skyline.harvester.model.HarvesterInfo;
+import com.skyline.harvester.model.HarvesterInfo;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
@@ -14,8 +15,8 @@ public final class NodeInfoCollector {
         return InstanceHandler.getInstance();
     }
 
-    public NodeInfo collect() {
-        return new NodeInfo.Builder()
+    public HarvesterInfo collect() {
+        return new HarvesterInfo.Builder()
                 .cpuUsage(collectCpuUsage())
                 .freeRam(collectFreeRam())
                 .freeSwap(collectFreeSwap())

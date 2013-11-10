@@ -1,6 +1,7 @@
 package com.skyline.harvester.server;
 
-import com.skyline.harvester.model.NodeInfo;
+import com.skyline.harvester.model.HarvesterInfo;
+import com.skyline.harvester.model.HarvesterInfo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,11 +37,11 @@ public class ServerTest {
     public void testServer() throws Exception {
         Socket socket = new Socket("localhost", 1755);
         ObjectInput in = new ObjectInputStream(socket.getInputStream());
-        NodeInfo nodeInfo = (NodeInfo)in.readObject();
+        HarvesterInfo harvesterInfo = (HarvesterInfo)in.readObject();
 
-        assertNotNull(nodeInfo);
-        assertTrue(nodeInfo.getFreeRam() > 0);
-        assertTrue(nodeInfo.getFreeSwap() > 0);
+        assertNotNull(harvesterInfo);
+        assertTrue(harvesterInfo.getFreeRam() > 0);
+        assertTrue(harvesterInfo.getFreeSwap() > 0);
     }
 
     @After

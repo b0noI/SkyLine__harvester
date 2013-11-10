@@ -2,7 +2,7 @@ package com.skyline.harvester.model;
 
 import java.io.Serializable;
 
-public final class NodeInfo implements Serializable{
+public final class HarvesterInfo implements Serializable{
 
     public double getCpuUsage() {
         return cpuUsage;
@@ -21,11 +21,11 @@ public final class NodeInfo implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        NodeInfo nodeInfo = (NodeInfo) o;
+        HarvesterInfo harvesterInfo = (HarvesterInfo) o;
 
-        if (Double.compare(nodeInfo.cpuUsage, cpuUsage) != 0) return false;
-        if (Double.compare(nodeInfo.freeRam, freeRam) != 0) return false;
-        if (Double.compare(nodeInfo.freeSwap, freeSwap) != 0) return false;
+        if (Double.compare(harvesterInfo.cpuUsage, cpuUsage) != 0) return false;
+        if (Double.compare(harvesterInfo.freeRam, freeRam) != 0) return false;
+        if (Double.compare(harvesterInfo.freeSwap, freeSwap) != 0) return false;
 
         return true;
     }
@@ -78,8 +78,8 @@ public final class NodeInfo implements Serializable{
             return cpuUsage;
         }
 
-        public NodeInfo build() {
-            return new NodeInfo(this);
+        public HarvesterInfo build() {
+            return new HarvesterInfo(this);
         }
 
     }
@@ -92,7 +92,7 @@ public final class NodeInfo implements Serializable{
 
     private final double freeSwap;
 
-    private NodeInfo(final Builder builder) {
+    private HarvesterInfo(final Builder builder) {
         this.cpuUsage = builder.getCpuUsage();
         this.freeSwap = builder.getFreeSwap();
         this.freeRam = builder.getFreeRam();

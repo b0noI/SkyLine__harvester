@@ -2,12 +2,12 @@ package com.skyline.harvester.model;
 
 import java.io.*;
 
-public final class NodeInfoHelper {
+public final class HarvesterInfoHelper {
 
-    public static byte[] serializ(NodeInfo nodeInfo) {
+    public static byte[] serializ(HarvesterInfo harvesterInfo) {
         try(ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutput out = new ObjectOutputStream(bos)) {
-            out.writeObject(nodeInfo);
+            out.writeObject(harvesterInfo);
             return bos.toByteArray();
         } catch (IOException e) {
             e.printStackTrace();
@@ -16,10 +16,10 @@ public final class NodeInfoHelper {
     }
 
 
-    public static NodeInfo deserializ(byte[] data) {
+    public static HarvesterInfo deserializ(byte[] data) {
         try(ByteArrayInputStream bais = new ByteArrayInputStream(data);
             ObjectInput in = new ObjectInputStream(bais)) {
-            return (NodeInfo)in.readObject();
+            return (HarvesterInfo)in.readObject();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
             return null;

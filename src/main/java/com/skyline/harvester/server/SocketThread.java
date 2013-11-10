@@ -1,8 +1,6 @@
 package com.skyline.harvester.server;
 
-import com.skyline.harvester.controller.NodeInfoCollector;
-import com.skyline.harvester.model.NodeInfo;
-import com.skyline.harvester.model.NodeInfoHelper;
+import com.skyline.harvester.model.HarvesterInfoHelper;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -17,7 +15,7 @@ final class SocketThread extends Thread{
     @Override
     public void run() {
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(socket.getOutputStream())){
-            byte[] data = NodeInfoHelper.serializ(SERVER_CACHE.getNodeInfo());
+            byte[] data = HarvesterInfoHelper.serializ(SERVER_CACHE.getHarvesterInfo());
             bufferedOutputStream.write(data);
         } catch (IOException e) {
             e.printStackTrace();

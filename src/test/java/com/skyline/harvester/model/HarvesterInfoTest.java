@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class NodeInfoTest {
+public class HarvesterInfoTest {
 
     @Test
     public void testBuilder() throws Exception {
-        NodeInfo testClass = new NodeInfo.Builder()
+        HarvesterInfo testClass = new HarvesterInfo.Builder()
                 .cpuUsage(1.1)
                 .freeRam(2.2)
                 .freeSwap(3.3)
